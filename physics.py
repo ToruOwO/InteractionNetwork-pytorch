@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as manimation
 
 # number of time steps
-ts = 1000
+ts = 100
 
 # number of features, [mass, x, y, vx, vy]
 num_features = 5
@@ -31,16 +31,16 @@ G = 10 ** 5
 dt = 0.001
 
 
-def init(n_body, fea_num, orbit):
+def init(n_body, orbit):
 	"""
 	Initialization on just the first time step; fill all other time steps with 0's
 
 	:param n_body: number of objects
-	:param fea_num: number of features
+	:param num_features: number of features
 	:param orbit: whether simulate planet orbit
-	:return: a numpy vector of shape (ts, n_body, fea_num)
+	:return: a numpy vector of shape (ts, n_body, num_features)
 	"""
-	data = np.zeros((ts, n_body, fea_num), dtype=float)
+	data = np.zeros((ts, n_body, num_features), dtype=float)
 	if orbit:
 		data[0][0][0] = 100
 		data[0][0][1:5] = 0.0
@@ -112,13 +112,18 @@ def calc(cur_state, n_body):
 
 
 def gen(n_body, orbit):
+	"""
+	Return time-series data for object motions.
+
+	:return: a numpy vector of shape (ts, n_body, num_features)
+	"""
 	# initialize the first time step
-	d = init(n_body, num_features, orbit)
+	data = init(n_body, orbit)
 
 	# calculate data for remaining time steps
 	for i in range(1, ts):
-		d[i] = calc(d[i - 1], n_body)
-	return d
+		data[i] = calc(data[i - 1], n_body)
+	return data
 
 
 def make_video(xy, filename):
@@ -139,6 +144,6 @@ def make_video(xy, filename):
 
 
 if __name__ == '__main__':
-	data = gen(3, True)
-	xy = data[:, :, 1:3]  # x, y positions
+	test_data = gen(3, True)
+	xy = test_data[:, :, 1:3]  # x, y positions
 	make_video(xy, "test.mp4")
