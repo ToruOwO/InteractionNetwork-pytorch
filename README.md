@@ -17,7 +17,7 @@ system."
 
 Automatically generates motion data for a three-particle system with arbitrary orbit, together with a video showing a sample of the data saved as "test.mp4"
 
-![test_data](https://github.com/ToruOwO/InteractionNetwork-pytorch/blob/master/test.mp4)
+![test_data](https://github.com/ToruOwO/InteractionNetwork-pytorch/blob/master/test.gif)
 
 ## Model training
 
