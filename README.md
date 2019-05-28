@@ -10,3 +10,17 @@ a key goal of artificial intelligence. Here we introduce the interaction network
 model which can reason about how objects in complex systems interact, supporting
 dynamical predictions, as well as inferences about the abstract properties of the
 system."
+
+## Data generation
+
+`python physics.py`
+
+Automatically generates motion data for a three-particle system with arbitrary orbit, together with a video showing a sample of the data saved as "test.mp4"
+
+![test_data](https://github.com/ToruOwO/InteractionNetwork-pytorch/blob/master/test.mp4)
+
+## Model training
+
+`python model.py`
+
+Trains the Interaction Network and plot loss for each epoch
